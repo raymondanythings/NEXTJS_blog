@@ -272,6 +272,11 @@
   "resolved" "https://registry.npmjs.org/@sanity/image-url/-/image-url-0.140.22.tgz"
   "version" "0.140.22"
 
+"@sanity/image-url@^1.0.1":
+  "integrity" "sha512-AdKQ3zMk7WdoNwoJPrAvQhW+kUtBldBX0nHtnGy+rwmgsCQ0rAXasrgH43Fhmsp/yB6piiq+F2d5qEuBFsdQVg=="
+  "resolved" "https://registry.npmjs.org/@sanity/image-url/-/image-url-1.0.1.tgz"
+  "version" "1.0.1"
+
 "@sanity/observable@2.0.9":
   "integrity" "sha512-IUpzsEbhOhofTBUu2tiQ4Ymbkmhr6oe4UC4Ds1khZ9Td4t4mzzPGmGQIr5SBEDawz0UD7ZgZAb4LeEzV3hUrtA=="
   "resolved" "https://registry.npmjs.org/@sanity/observable/-/observable-2.0.9.tgz"
