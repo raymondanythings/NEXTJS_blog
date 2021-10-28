@@ -2,6 +2,7 @@
 import PageLayout from "components/PageLayout";
 import { getBlogBySlug, getAllBlogs } from "lib/api";
 import { Row, Col } from "react-bootstrap";
+import { urlFor } from "lib/api";
 import BlogHeader from "components/BlogHeader";
 import BlogContent from "components/BlogContent";
 
@@ -16,7 +17,7 @@ const BlogDetail = ({ blog }) => {
             date={blog.date}
             title={blog.title}
             subtitle={blog.subtitle}
-            coverImage={blog.coverImage}
+            coverImage={urlFor(blog.coverImage).height(800).url()}
           />
           <hr />
           <BlogContent content={blog.content} />

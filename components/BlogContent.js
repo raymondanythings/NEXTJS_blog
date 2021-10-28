@@ -1,6 +1,7 @@
 import BlockContent from "@sanity/block-content-to-react";
 import HighlightCode from "./HighlightCode";
 import { urlFor } from "lib/api";
+import { style } from "dom-helpers";
 
 const serializer = {
   types: {
@@ -12,9 +13,9 @@ const serializer = {
         </HighlightCode>
       );
     },
-    image: ({ node: { asset, alt } }) => {
+    image: ({ node: { asset, alt, position = "center" } }) => {
       return (
-        <div className="blog-image">
+        <div className={`blog-image blog-image-${position}`}>
           <img src={urlFor(asset.url).height(300).fit("max").url()} alt={alt} />
           <div className="image-alt">{alt}</div>
         </div>
