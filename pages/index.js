@@ -2,16 +2,22 @@ import { useState } from "react";
 import { Row, Col } from "react-bootstrap";
 import PageLayout from "components/PageLayout";
 import AuthorIntro from "components/AuthorIntro";
-// import CardListItem from "components/CardListItem";
 import CardItem from "components/CardItem";
 import { getAllBlogs } from "lib/api";
 import FilteringMenu from "components/FilteringMenu";
 import CardListItem from "components/CardListItem";
+import { useGetBlogs } from "action";
 
-export default function Home({ blogs }) {
+export default function Home({ blogs: initalData }) {
   const [filter, setFilter] = useState({
-    view: { list: 1 },
+    view: { list: 0 },
   });
+
+  const { data: blogs, error } = useGetBlogs(initalData);
+  if (!blogs) {
+    return "Loading!";
+  }
+
   return (
     <PageLayout>
       <AuthorIntro />
@@ -23,10 +29,19 @@ export default function Home({ blogs }) {
       />
       <hr />
       <Row className="mb-5">
-        {blogs.map((blog, id) =>
+        {blogs.map((blog) =>
           filter.view.list ? (
-            <Col md="9" key={id}>
-              <CardListItem />
+            <Col md="9" key={`${blog.slug}-list`}>
+              <CardListItem
+                author={blog.author}
+                title={blog.title}
+                subtitle={blog.subtitle}
+                date={blog.date}
+                link={{
+                  href: "/blogs/[slug]",
+                  as: `/blogs/${blog.slug}`,
+                }}
+              />
             </Col>
           ) : (
             <Col key={blog.slug} md="4">
@@ -53,7 +68,7 @@ export default function Home({ blogs }) {
 // Provides props to your page
 // It will create static page
 export async function getStaticProps() {
-  const blogs = await getAllBlogs();
+  const blogs = await getAllBlogs({ offset: 3 });
   return {
     props: {
       blogs,
